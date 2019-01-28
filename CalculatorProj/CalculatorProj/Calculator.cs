@@ -53,6 +53,7 @@ namespace CalculatorProj
 
         public double SquareRoot(double x)
         {
+
             return Math.Sqrt(x);
 
         }
@@ -60,18 +61,18 @@ namespace CalculatorProj
         public double Sin(double x)
         {
 
-            return Math.Sin(x);
-           
+            
+            return Math.Round(Math.Sin(x), 11);
         }
 
         public double Cos(double x)
         {
-            return Math.Cos(x);
+            return Math.Round(Math.Cos(x), 11);
         }
 
         public double Tan(double x)
         {
-            return Math.Tan(x);
+            return Math.Round(Math.Tan(x), 11);
         }
 
 

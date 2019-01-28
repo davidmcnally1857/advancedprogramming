@@ -48,6 +48,15 @@ namespace CalculatorProj.Tests
          }
 
         [TestMethod()]
+        public void Divide5byMinus2()
+        {
+            Calculator calculator = new Calculator();
+            x = 5;
+            y = -2;
+            Assert.AreEqual(-2.5, calculator.Divide(x, y));
+        }
+
+        [TestMethod()]
         public void DivideBYZeroShouldGiveAnError() {
             Calculator calculator = new Calculator();
              x = 12;
@@ -93,7 +102,7 @@ namespace CalculatorProj.Tests
         {
             Calculator calculator = new Calculator();
             x = 30;
-            Assert.AreEqual(-0.988031624092862, calculator.Sin(x));
+            Assert.AreEqual(-0.98803162409, calculator.Sin(x));
 
         }
 
@@ -102,7 +111,7 @@ namespace CalculatorProj.Tests
         {
             Calculator calculator = new Calculator();
             x = 40;
-            Assert.AreEqual(-0.666938061652262, calculator.Cos(x));
+            Assert.AreEqual(-0.66693806165, calculator.Cos(x));
             
 
         }
@@ -114,7 +123,7 @@ namespace CalculatorProj.Tests
         {
             Calculator calculator = new Calculator();
             x = 20;
-            Assert.AreEqual(2.23716094422474, calculator.Tan(x));
+            Assert.AreEqual(2.23716094422, calculator.Tan(x));
 
         }
 
