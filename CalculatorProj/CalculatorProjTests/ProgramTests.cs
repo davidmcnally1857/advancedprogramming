@@ -45,19 +45,7 @@ namespace CalculatorProj.Tests
              x = 120;
              y = 10;
             Assert.AreEqual(12, calculator.Divide(x, y));
-        }
-
-
-        [TestMethod()]
-        public void Divide5byMinus3()
-        {
-            Calculator calculator = new Calculator();
-            x = 4;
-            y = -2;
-            Assert.AreEqual (-2, calculator.Divide(x, y)); 
-        } 
-
-        
+         }
 
         [TestMethod()]
         public void DivideBYZeroShouldGiveAnError() {
