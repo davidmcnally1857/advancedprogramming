@@ -5,3 +5,10 @@ C:\Users\david\source\repos\CalculatorProj\CalculatorProj\obj\Debug\CalculatorPr
 C:\Users\david\source\repos\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.exe
 C:\Users\david\source\repos\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.pdb
 C:\Users\david\source\repos\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.csprojAssemblyReference.cache
+C:\Users\David.McNally\advancedprogramming\CalculatorProj\CalculatorProj\bin\Debug\CalculatorProj.exe.config
+C:\Users\David.McNally\advancedprogramming\CalculatorProj\CalculatorProj\bin\Debug\CalculatorProj.exe
+C:\Users\David.McNally\advancedprogramming\CalculatorProj\CalculatorProj\bin\Debug\CalculatorProj.pdb
+C:\Users\David.McNally\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.csprojAssemblyReference.cache
+C:\Users\David.McNally\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.csproj.CoreCompileInputs.cache
+C:\Users\David.McNally\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.exe
+C:\Users\David.McNally\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.pdb
