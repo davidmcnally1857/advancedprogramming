@@ -32,6 +32,7 @@ namespace CalculatorProj
             }
 
             else {
+
                 Console.WriteLine("Cannot divide by 0");
                 return -1;
             }
@@ -52,6 +53,7 @@ namespace CalculatorProj
 
         public double SquareRoot(double x)
         {
+
             return Math.Sqrt(x);
 
         }
@@ -59,87 +61,107 @@ namespace CalculatorProj
         public double Sin(double x)
         {
 
-            return Math.Sin(x);
-           
+            
+            return Math.Round(Math.Sin(x), 11);
         }
 
         public double Cos(double x)
         {
-            return Math.Cos(x);
+            return Math.Round(Math.Cos(x), 11);
         }
 
         public double Tan(double x)
         {
-            return Math.Tan(x);
+            return Math.Round(Math.Tan(x), 11);
         }
 
 
         public static void Main(string[] args) {
 
             Calculator calculator = new Calculator();
+
+            Console.WriteLine("######################");
+            Console.WriteLine("Scientific Calculator");
+            Console.WriteLine("######################\n\n");
+            bool isNumber;
             Console.WriteLine("Please enter a number");
-            double x = double.Parse(Console.ReadLine().ToLower());
-            Console.WriteLine("Please enter an operation");
-            string operation = Console.ReadLine();
-            if (operation == "s" || operation == "c" || operation == "sq" || operation == "sin" || operation == "cos" || operation == "tan")
+            string number = Console.ReadLine();
+            double x = 0;
+            isNumber = double.TryParse(number, out x);
+            if (isNumber == false)
             {
+                x = 0;
+                Console.WriteLine(x);
+            }
+           
+                Console.WriteLine("Please enter an operation");
+                Console.WriteLine("Press 1 to add\nPress 2 to subtract\nPress 3 to multiply\nPress 4 to divide\nPress 5 for Modulo\nPress6 for square\nPress 7 for cube\n" +
+                    "Press 8 for sin\nPress 9 for cos\nPress 10 for tan");
+            try
+            {
+                int operation = int.Parse(Console.ReadLine());
+                 double y = 0;
+                if (operation >= 1 && operation <= 5)
+                {
 
-                if (operation == "s")
-                {
-                    Console.WriteLine(calculator.Squared(x));
-                }
-                else if (operation == "c")
-                {
-                   Console.WriteLine(calculator.Cubed(x));
-                }
-                else if(operation == "sq")
-                {
-                    Console.WriteLine(calculator.SquareRoot(x));
-                }
+                    Console.WriteLine("Please enter a number");
+                    number = Console.ReadLine();
+                    
+                    isNumber = double.TryParse(number, out y);
 
-                else if(operation == "sin")
-                {
-                    Console.WriteLine(calculator.Sin(x));
-                }
+                    if (isNumber == false)
+                    {
+                        y = 0;
+                        Console.WriteLine(0);
+                    }
 
-                else if(operation == "cos")
-                {
-                    Console.WriteLine(calculator.Cos(x));
                 }
+                    switch (operation)
+                    {
+                        case 1:
+                            Console.WriteLine("The answer is: " + calculator.Add(x, y));
+                            break;
+                        case 2:
+                            Console.WriteLine("The answer is: " + calculator.Subtract(x, y));
+                            break;
+                        case 3:
+                            Console.WriteLine("The answer is: " + calculator.Multiply(x, y));
+                            break;
+                        case 4:
+                            Console.WriteLine("The answer is: " + calculator.Divide(x, y));
+                            break;
+                        case 5:
+                            Console.WriteLine("The answer is: " + calculator.Modulo(x, y));
+                            break;            
+                        case 6:
+                            Console.WriteLine("The answer is: " + calculator.Squared(x));
+                            break;
+                        case 7:
+                            Console.WriteLine("The answer is: " + calculator.Cubed(x));
+                            break;
+                        case 8:
+                            Console.WriteLine("The answer is: " + calculator.Sin(x));
+                            break;
+                        case 9:
+                            Console.WriteLine("The answer is: " + calculator.Cos(x));
+                            break;
+                        case 10:
+                            Console.WriteLine("The answer is: " + calculator.Tan(x));
+                            break;
+                        default:
+                            Console.WriteLine("Invalid input");
+                            break;
+                    }
 
-                else if(operation == "tan")
-                {
-                    Console.WriteLine(calculator.Tan(x));
-                }
+                
 
             }
-            else {
-
-                Console.WriteLine("Please enter a number");
-                double y = int.Parse(Console.ReadLine().ToLower());
-                switch (operation)
-                {
-                    case "+":
-                        Console.WriteLine(calculator.Add(x, y));
-                        break;
-                    case "-":
-                        Console.WriteLine(calculator.Subtract(x, y));
-                        break;
-                    case "*":
-                        Console.WriteLine(calculator.Multiply(x, y));
-                        break;
-                    case "/":
-                        Console.WriteLine(calculator.Divide(x, y));
-                        break;
-                    case "%":
-                        Console.WriteLine(calculator.Modulo(x, y));
-                        break;
-                    default:
-                        Console.WriteLine("Invalid input");
-                        break;
-
-                }
+            catch (FormatException)
+            {
+                Console.WriteLine("Operator has no value");
             }
+
+
             Console.ReadLine();
 
         }
