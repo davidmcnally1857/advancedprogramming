@@ -8,7 +8,7 @@ C:\Users\david\source\repos\CalculatorProj\CalculatorProj\obj\Debug\CalculatorPr
 C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\bin\Debug\CalculatorProj.exe.config
 C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\bin\Debug\CalculatorProj.exe
 C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\bin\Debug\CalculatorProj.pdb
-C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.csprojAssemblyReference.cache
 C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.csproj.CoreCompileInputs.cache
 C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.exe
 C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.pdb
+C:\Users\david\advancedprogramming\CalculatorProj\CalculatorProj\obj\Debug\CalculatorProj.csprojAssemblyReference.cache
