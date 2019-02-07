@@ -51,7 +51,7 @@ namespace WindowsFormsApp3
                     MeterId = 103,
                     VolumeUsed = 102191,
                     HasBeenServiced = true,
-                    OwnerAccountId = 10003
+                    OwnerAccountId = 10004
 
                 },
                       new WaterMeter
@@ -85,7 +85,7 @@ namespace WindowsFormsApp3
 
         private void dgvWatermeters_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex != 0)
+            if(e.RowIndex >= 0)
             {
                 int selectedAcc = Convert.ToInt32(dgvWatermeters.Rows[e.RowIndex].Cells[3].Value);
 
@@ -93,6 +93,50 @@ namespace WindowsFormsApp3
                                         where account.AccountId == selectedAcc
                                         select account).ToList();
             }
+        }
+
+        private void rbMeterId_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbMeterId.Checked)
+            {
+                dgvWatermeters.DataSource = (from waterMeter in WaterMeters
+                                             orderby waterMeter.MeterId
+                                             select waterMeter).ToList();
+
+                dgvWeterMeterAccount.DataSource = null;
+            }
+        }
+
+        private void rbVolumeUsed_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbVolumeUsed.Checked)
+            {
+                dgvWatermeters.DataSource = (from waterMeter in WaterMeters
+                                             orderby waterMeter.VolumeUsed
+                                             select waterMeter).ToList();
+
+               dgvWeterMeterAccount.DataSource = null;
+            }
+        }
+
+        private void btnCustomerArrers_Click(object sender, EventArgs e)
+        {
+            using (CustomerArrearsReport cusArrReport = new CustomerArrearsReport(Accounts))
+            {
+                cusArrReport.ShowDialog();
+            }
+        }
+
+        private void btnSummaryReportS_Click(object sender, EventArgs e)
+        {
+            int totalWater = (from waterMeter in WaterMeters
+                              select waterMeter.VolumeUsed).Sum();
+
+            int totalArrears = (from account in Accounts
+                                where account.ArrearsCount > 0
+                                select account.ArrearsCount).Count();
+
+            MessageBox.Show($"Total water is {totalWater} and total arrears is {totalArrears}"); 
         }
     }
 }

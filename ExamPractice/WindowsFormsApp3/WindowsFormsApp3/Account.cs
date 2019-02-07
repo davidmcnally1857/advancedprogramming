@@ -16,7 +16,7 @@ namespace WindowsFormsApp3
 
     }
 
-    class Account
+   public class Account
     {
         public int AccountId { get; set; }
         public string Eircode { get; set; }
