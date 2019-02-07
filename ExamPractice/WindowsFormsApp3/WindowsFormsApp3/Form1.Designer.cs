@@ -33,8 +33,8 @@
             this.lblWaterMeterAccount = new System.Windows.Forms.Label();
             this.dgvWeterMeterAccount = new System.Windows.Forms.DataGridView();
             this.gbrMeters = new System.Windows.Forms.GroupBox();
-            this.rbMeterId = new System.Windows.Forms.RadioButton();
             this.rbVolumeUsed = new System.Windows.Forms.RadioButton();
+            this.rbMeterId = new System.Windows.Forms.RadioButton();
             this.btnCustomerArrers = new System.Windows.Forms.Button();
             this.btnSummaryReportS = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWatermeters)).BeginInit();
@@ -50,6 +50,7 @@
             this.dgvWatermeters.RowTemplate.Height = 28;
             this.dgvWatermeters.Size = new System.Drawing.Size(907, 187);
             this.dgvWatermeters.TabIndex = 0;
+            this.dgvWatermeters.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWatermeters_RowEnter);
             // 
             // lblWaterMeters
             // 
@@ -89,17 +90,6 @@
             this.gbrMeters.TabStop = false;
             this.gbrMeters.Text = "Sort Water Meters";
             // 
-            // rbMeterId
-            // 
-            this.rbMeterId.AutoSize = true;
-            this.rbMeterId.Location = new System.Drawing.Point(24, 37);
-            this.rbMeterId.Name = "rbMeterId";
-            this.rbMeterId.Size = new System.Drawing.Size(89, 24);
-            this.rbMeterId.TabIndex = 0;
-            this.rbMeterId.TabStop = true;
-            this.rbMeterId.Text = "MeterId";
-            this.rbMeterId.UseVisualStyleBackColor = true;
-            // 
             // rbVolumeUsed
             // 
             this.rbVolumeUsed.AutoSize = true;
@@ -110,6 +100,17 @@
             this.rbVolumeUsed.TabStop = true;
             this.rbVolumeUsed.Text = "Volume Used";
             this.rbVolumeUsed.UseVisualStyleBackColor = true;
+            // 
+            // rbMeterId
+            // 
+            this.rbMeterId.AutoSize = true;
+            this.rbMeterId.Location = new System.Drawing.Point(24, 37);
+            this.rbMeterId.Name = "rbMeterId";
+            this.rbMeterId.Size = new System.Drawing.Size(89, 24);
+            this.rbMeterId.TabIndex = 0;
+            this.rbMeterId.TabStop = true;
+            this.rbMeterId.Text = "MeterId";
+            this.rbMeterId.UseVisualStyleBackColor = true;
             // 
             // btnCustomerArrers
             // 

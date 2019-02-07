@@ -82,5 +82,17 @@ namespace WindowsFormsApp3
 
             dgvWeterMeterAccount.DataSource = null;
         }
+
+        private void dgvWatermeters_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex != 0)
+            {
+                int selectedAcc = Convert.ToInt32(dgvWatermeters.Rows[e.RowIndex].Cells[3].Value);
+
+                dgvWeterMeterAccount.DataSource = (from account in Accounts
+                                        where account.AccountId == selectedAcc
+                                        select account).ToList();
+            }
+        }
     }
 }
