@@ -1,0 +1,10 @@
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\bin\Debug\RacingBetSystem.exe.config
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\bin\Debug\RacingBetSystem.exe
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\bin\Debug\RacingBetSystem.pdb
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\obj\Debug\RacingBetSystem.csprojAssemblyReference.cache
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\obj\Debug\RacingBetSystem.Form1.resources
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\obj\Debug\RacingBetSystem.Properties.Resources.resources
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\obj\Debug\RacingBetSystem.csproj.GenerateResource.cache
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\obj\Debug\RacingBetSystem.csproj.CoreCompileInputs.cache
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\obj\Debug\RacingBetSystem.exe
+C:\Users\david\Documents\RacingBetSystem\RacingBetSystem\obj\Debug\RacingBetSystem.pdb
