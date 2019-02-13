@@ -20,10 +20,15 @@ namespace RacingBetSystem
             raceList = new List<Races>
             {
                 new Races{Name = "Ascot", Date = new DateTime(2017, 05, 12), Length = 11.58, Outcome = true  },
-                 new Races{Name = "Punchestown", Date = new DateTime(2016, 12, 22), Length = 122.52, Outcome = true  },
-                  new Races{Name = "Sandown", Date = new DateTime(2016, 11, 17), Length = 20.00, Outcome = false },
-                   new Races{Name = "Ayr", Date = new DateTime(2016, 03, 11), Length = 25.00, Outcome = false  }
-                   
+                new Races{Name = "Punchestown", Date = new DateTime(2016, 12, 22), Length = 122.52, Outcome = true  },
+                new Races{Name = "Sandown", Date = new DateTime(2016, 11, 17), Length = 20.00, Outcome = false },
+                new Races{Name = "Ayr", Date = new DateTime(2016, 03, 11), Length = 25.00, Outcome = false  },
+                new Races{Name = "FairyHouse", Date = new DateTime(2016, 02, 12), Length = 65.75, Outcome = true  },
+                new Races{Name = "Doncaster", Date = new DateTime(2017, 12, 02), Length = 10.00, Outcome = false  },
+                new Races{Name = "Towcester", Date = new DateTime(2016, 03, 12), Length = 50.00, Outcome = false  }
+               
+
+
 
             };
 
