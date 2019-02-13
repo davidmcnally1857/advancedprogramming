@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace RacingBetSystem
 {
@@ -16,7 +11,7 @@ namespace RacingBetSystem
         public List<Races> raceList;
         private const string DIR_NAME = @"C:\Users\david\Documents";
         private const string SRCFile = "RaceBet.bin";
-        private readonly string PATH_NAME;
+        private string PATH_NAME;
 
         public Form1()
         {
@@ -43,11 +38,13 @@ namespace RacingBetSystem
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            if (rtbFile != null)
+         
+       
+          if (rtbFile != null)
             {
                 rtbFile.Clear();
             }
-            btnWriteFIle.Enabled = false;
+            btnWriteFile.Enabled = false;
             try
             {
 
@@ -74,7 +71,7 @@ namespace RacingBetSystem
             }
         }
 
-        private void btnWriteFIle_Click(object sender, EventArgs e)
+        private void btnWriteFile_Click(object sender, EventArgs e)
         {
 
             string name;
@@ -98,7 +95,7 @@ namespace RacingBetSystem
                            
                         }
 
-                        MessageBox.Show("File written to");
+                        MessageBox.Show($"File written to {PATH_NAME}");
 
 
                     }
@@ -110,5 +107,72 @@ namespace RacingBetSystem
 
             }
        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                raceList.Add(new Races { Name = txtName.Text, Date = new DateTime(2017, 11, 05), Length = int.Parse(txtLength.Text), Outcome = false });
+                MessageBox.Show("Race Added");
+                grpRace.ResetText();
+                clearForm();
+                btnWriteFile.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+    
+        public void clearForm()
+        {
+            foreach (Control c in grpRace.Controls)
+            {
+                if (c is TextBox)
+                {
+                    c.Text = "";
+                }
+            }
+           
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            clearForm();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+
+        }
+
+        private void rbSort_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSort.Checked)
+            {
+                dgvRaces.DataSource = raceList.OrderBy(race => race.Date).ToList();
+            }
+        }
+
+        private void rbSortPopularity_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbSort.Checked)
+            {
+               // dgvSortPopularity.DataSource = (from race in raceList)
+                
+                                                
+
+                                                
+            }
+        }
+
+        public int getCount()
+        {
+            return 30;
+        }
     }
-}
+    }
+
