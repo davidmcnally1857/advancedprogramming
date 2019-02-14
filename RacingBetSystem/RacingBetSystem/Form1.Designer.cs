@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnLoadFile = new System.Windows.Forms.Button();
             this.rtbFile = new System.Windows.Forms.RichTextBox();
             this.btnWriteFile = new System.Windows.Forms.Button();
@@ -49,10 +50,12 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.rbSort = new System.Windows.Forms.RadioButton();
             this.rbSortPopularity = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grpRace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSortPopularity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -162,7 +165,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(476, 18);
+            this.lblTitle.Location = new System.Drawing.Point(496, 18);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(316, 69);
             this.lblTitle.TabIndex = 11;
@@ -270,12 +273,23 @@
             this.rbSortPopularity.UseVisualStyleBackColor = true;
             this.rbSortPopularity.CheckedChanged += new System.EventHandler(this.rbSortPopularity_CheckedChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(488, 100);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(333, 223);
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1330, 783);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.rbSortPopularity);
             this.Controls.Add(this.rbSort);
             this.Controls.Add(this.dataGridView3);
@@ -297,6 +311,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSortPopularity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,6 +340,7 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.RadioButton rbSort;
         private System.Windows.Forms.RadioButton rbSortPopularity;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

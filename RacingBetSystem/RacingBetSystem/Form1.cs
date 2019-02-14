@@ -10,7 +10,7 @@ namespace RacingBetSystem
     {
         public List<Races> raceList;
         private const string DIR_NAME = @"C:\Users\david\Documents";
-        private const string SRCFile = "RaceBet.bin";
+        private const string SRCFile = "RaceBet.txt";
         private string PATH_NAME;
 
         public Form1()
