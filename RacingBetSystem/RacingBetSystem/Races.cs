@@ -9,7 +9,7 @@ namespace RacingBetSystem
     public class Races
     {
         public string Name { get; set; }
-
+   
         public DateTime Date { get; set; }
 
         public decimal Length { get; set; }
