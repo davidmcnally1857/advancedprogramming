@@ -12,8 +12,8 @@ namespace RacingBetSystem
 
         public DateTime Date { get; set; }
 
-        public double Length { get; set; }
+        public decimal Length { get; set; }
         
-        public Boolean Outcome { get; set; }
+        public bool Outcome { get; set; }
     }
 }

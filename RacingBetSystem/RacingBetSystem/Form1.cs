@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Linq;
+using System.Globalization;
 
 namespace RacingBetSystem
 {
     public partial class Form1 : Form
     {
+        //RaceList raceList;
         public List<Races> raceList;
-        private const string DIR_NAME = @"C:\Users\david\Documents";
-        private const string SRCFile = "RaceBet.txt";
+        private const string DIR_NAME = @"C:\Users\David.McNally";
+        private const string SRCFile = "Race.txt";
         private string PATH_NAME;
+        
+        
 
         public Form1()
         {
             PATH_NAME = $@"{DIR_NAME}\{SRCFile}";
             InitializeComponent();
             raceList = new List<Races>
+            //raceList = new RaceList();
             {
+
+                /*
                 new Races{Name = "Ascot", Date = new DateTime(2017, 05, 12), Length = 11.58, Outcome = true  },
                 new Races{Name = "Punchestown", Date = new DateTime(2016, 12, 22), Length = 122.52, Outcome = true  },
                 new Races{Name = "Sandown", Date = new DateTime(2016, 11, 17), Length = 20.00, Outcome = false },
@@ -26,26 +33,26 @@ namespace RacingBetSystem
                 new Races{Name = "FairyHouse", Date = new DateTime(2016, 02, 12), Length = 65.75, Outcome = true  },
                 new Races{Name = "Doncaster", Date = new DateTime(2017, 12, 02), Length = 10.00, Outcome = false  },
                 new Races{Name = "Towcester", Date = new DateTime(2016, 03, 12), Length = 50.00, Outcome = false  }
-               
+                */
 
 
 
             };
 
-           
+
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-         
-       
-          if (rtbFile != null)
+
+
+            if (rtbFile != null)
             {
                 rtbFile.Clear();
             }
@@ -53,26 +60,37 @@ namespace RacingBetSystem
             try
             {
 
-                string name;
-                double length;
-                bool outcome;
-                using (Stream fs = File.Open(PATH_NAME, FileMode.Open))
+                using (FileStream fs = File.OpenRead(PATH_NAME))
                 {
                     using (BinaryReader br = new BinaryReader(fs))
                     {
-                        foreach(var race in raceList)
+                        List<String> lines = File.ReadAllLines(PATH_NAME).ToList();
+
+                        foreach (var line in lines)
                         {
-                            name = br.ReadString();
-                            length = br.ReadDouble();
-                            outcome = br.ReadBoolean();
-                            rtbFile.AppendText($"Venue: {name}  Length: {length} Outcome: {outcome}" + Environment.NewLine);
+                            string[] entries = line.Split(',');
+                            Races race = new Races();
+                            race.Name = entries[0];
+                            race.Date = DateTime.Parse(entries[1]);
+                            race.Length = decimal.Parse(entries[2]);
+                            race.Outcome = bool.Parse(entries[3]);
+                            raceList.Add(race);
                         }
+                        foreach (var race in raceList)
+                        {
+                            rtbFile.AppendText($"Venue: {race.Name}, Date: {race.Date} Length: {race.Length} Outcome: {race.Outcome} " + Environment.NewLine);
+                        }
+
+
+
+
+
+                      }
                     }
                 }
-            }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -80,27 +98,31 @@ namespace RacingBetSystem
         {
 
             string name;
-            double length;
+            DateTime date;
+            decimal length;
             bool outcome;
             try
             {
                 using (Stream fs = File.OpenWrite(PATH_NAME))
                 {
-                    using (BinaryWriter br = new BinaryWriter(fs))
+                    using (StreamWriter br = new StreamWriter(fs))
                     {
 
-                      foreach(var race in raceList)
+                        foreach (var race in raceList)
                         {
                             name = race.Name;
-                            br.Write(name);
+                            br.Write(name + ',');
+                            date = race.Date;
+                            br.Write(date + ','.ToString());
                             length = race.Length;
-                            br.Write(length);
+                            br.Write(length + ','.ToString());
                             outcome = race.Outcome;
-                            br.Write(outcome);
-                           
+                            br.Write(outcome + Environment.NewLine);
+                            
                         }
 
                         MessageBox.Show($"File written to {PATH_NAME}");
+                        
 
 
                     }
@@ -111,13 +133,14 @@ namespace RacingBetSystem
             {
 
             }
-       }
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                raceList.Add(new Races { Name = txtName.Text, Date = new DateTime(2017, 11, 05), Length = int.Parse(txtLength.Text), Outcome = false });
+                raceList.Add(new Races { Name = txtName.Text, Date = DateTime.Parse(dtpRaceDate.Text),  Length = int.Parse(txtLength.Text), Outcome = chkWon.Checked
+                });
                 MessageBox.Show("Race Added");
                 grpRace.ResetText();
                 clearForm();
@@ -127,10 +150,10 @@ namespace RacingBetSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
-    
+
         public void clearForm()
         {
             foreach (Control c in grpRace.Controls)
@@ -140,7 +163,7 @@ namespace RacingBetSystem
                     c.Text = "";
                 }
             }
-           
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -164,13 +187,14 @@ namespace RacingBetSystem
 
         private void rbSortPopularity_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbSort.Checked)
+            if (rbSort.Checked)
             {
-               // dgvSortPopularity.DataSource = (from race in raceList)
-                
-                                                
 
-                                                
+                var racingList = raceList.GroupBy(race => race.Name)
+                .OrderByDescending(race => race.Count()).Take(1).ToList();
+
+
+
             }
         }
 
@@ -179,5 +203,4 @@ namespace RacingBetSystem
             return 30;
         }
     }
-    }
-
+}

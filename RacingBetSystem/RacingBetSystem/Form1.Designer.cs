@@ -34,8 +34,6 @@
             this.btnWriteFile = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.txtOutcome = new System.Windows.Forms.TextBox();
-            this.txtDate = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblLength = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
@@ -44,6 +42,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.grpRace = new System.Windows.Forms.GroupBox();
+            this.chkWon = new System.Windows.Forms.CheckBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvRaces = new System.Windows.Forms.DataGridView();
             this.dgvSortPopularity = new System.Windows.Forms.DataGridView();
@@ -51,6 +50,8 @@
             this.rbSort = new System.Windows.Forms.RadioButton();
             this.rbSortPopularity = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.dtpRaceDate = new System.Windows.Forms.DateTimePicker();
             this.grpRace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSortPopularity)).BeginInit();
@@ -61,9 +62,10 @@
             // btnLoadFile
             // 
             this.btnLoadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadFile.Location = new System.Drawing.Point(1188, 219);
+            this.btnLoadFile.Location = new System.Drawing.Point(1336, 274);
+            this.btnLoadFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(130, 47);
+            this.btnLoadFile.Size = new System.Drawing.Size(146, 59);
             this.btnLoadFile.TabIndex = 0;
             this.btnLoadFile.Text = "Load File";
             this.btnLoadFile.UseVisualStyleBackColor = true;
@@ -72,18 +74,20 @@
             // rtbFile
             // 
             this.rtbFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbFile.Location = new System.Drawing.Point(927, 100);
+            this.rtbFile.Location = new System.Drawing.Point(1043, 125);
+            this.rtbFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rtbFile.Name = "rtbFile";
-            this.rtbFile.Size = new System.Drawing.Size(391, 113);
+            this.rtbFile.Size = new System.Drawing.Size(439, 140);
             this.rtbFile.TabIndex = 1;
             this.rtbFile.Text = "";
             // 
             // btnWriteFile
             // 
             this.btnWriteFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWriteFile.Location = new System.Drawing.Point(1042, 219);
+            this.btnWriteFile.Location = new System.Drawing.Point(1172, 274);
+            this.btnWriteFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnWriteFile.Name = "btnWriteFile";
-            this.btnWriteFile.Size = new System.Drawing.Size(130, 47);
+            this.btnWriteFile.Size = new System.Drawing.Size(146, 59);
             this.btnWriteFile.TabIndex = 2;
             this.btnWriteFile.Text = "Write File";
             this.btnWriteFile.UseVisualStyleBackColor = true;
@@ -92,42 +96,28 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(125, 27);
+            this.txtName.Location = new System.Drawing.Point(141, 34);
+            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(193, 30);
+            this.txtName.Size = new System.Drawing.Size(217, 35);
             this.txtName.TabIndex = 3;
             // 
             // txtLength
             // 
             this.txtLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLength.Location = new System.Drawing.Point(125, 70);
+            this.txtLength.Location = new System.Drawing.Point(141, 88);
+            this.txtLength.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtLength.Name = "txtLength";
-            this.txtLength.Size = new System.Drawing.Size(193, 30);
+            this.txtLength.Size = new System.Drawing.Size(217, 35);
             this.txtLength.TabIndex = 4;
-            // 
-            // txtOutcome
-            // 
-            this.txtOutcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOutcome.Location = new System.Drawing.Point(125, 148);
-            this.txtOutcome.Name = "txtOutcome";
-            this.txtOutcome.Size = new System.Drawing.Size(193, 30);
-            this.txtOutcome.TabIndex = 5;
-            // 
-            // txtDate
-            // 
-            this.txtDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDate.Location = new System.Drawing.Point(125, 109);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(193, 30);
-            this.txtDate.TabIndex = 6;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(16, 32);
+            this.lblName.Location = new System.Drawing.Point(18, 40);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(64, 25);
+            this.lblName.Size = new System.Drawing.Size(78, 29);
             this.lblName.TabIndex = 7;
             this.lblName.Text = "Name";
             // 
@@ -135,9 +125,9 @@
             // 
             this.lblLength.AutoSize = true;
             this.lblLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLength.Location = new System.Drawing.Point(16, 75);
+            this.lblLength.Location = new System.Drawing.Point(18, 94);
             this.lblLength.Name = "lblLength";
-            this.lblLength.Size = new System.Drawing.Size(72, 25);
+            this.lblLength.Size = new System.Drawing.Size(86, 29);
             this.lblLength.TabIndex = 8;
             this.lblLength.Text = "Length";
             // 
@@ -145,9 +135,9 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(16, 114);
+            this.lblDate.Location = new System.Drawing.Point(18, 142);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(53, 25);
+            this.lblDate.Size = new System.Drawing.Size(63, 29);
             this.lblDate.TabIndex = 9;
             this.lblDate.Text = "Date";
             // 
@@ -155,9 +145,9 @@
             // 
             this.lblOutcome.AutoSize = true;
             this.lblOutcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOutcome.Location = new System.Drawing.Point(16, 153);
+            this.lblOutcome.Location = new System.Drawing.Point(18, 191);
             this.lblOutcome.Name = "lblOutcome";
-            this.lblOutcome.Size = new System.Drawing.Size(92, 25);
+            this.lblOutcome.Size = new System.Drawing.Size(111, 29);
             this.lblOutcome.TabIndex = 10;
             this.lblOutcome.Text = "Outcome";
             // 
@@ -165,18 +155,19 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(496, 18);
+            this.lblTitle.Location = new System.Drawing.Point(558, 22);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(316, 69);
+            this.lblTitle.Size = new System.Drawing.Size(378, 82);
             this.lblTitle.TabIndex = 11;
             this.lblTitle.Text = "HotTipster";
             // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(121, 276);
+            this.btnAdd.Location = new System.Drawing.Point(136, 345);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(107, 47);
+            this.btnAdd.Size = new System.Drawing.Size(120, 59);
             this.btnAdd.TabIndex = 12;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -185,9 +176,10 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(234, 276);
+            this.btnClear.Location = new System.Drawing.Point(263, 345);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(107, 47);
+            this.btnClear.Size = new System.Drawing.Size(120, 59);
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -195,26 +187,39 @@
             // 
             // grpRace
             // 
+            this.grpRace.Controls.Add(this.dtpRaceDate);
+            this.grpRace.Controls.Add(this.chkWon);
             this.grpRace.Controls.Add(this.lblName);
             this.grpRace.Controls.Add(this.txtName);
             this.grpRace.Controls.Add(this.txtLength);
-            this.grpRace.Controls.Add(this.txtOutcome);
-            this.grpRace.Controls.Add(this.txtDate);
             this.grpRace.Controls.Add(this.lblLength);
             this.grpRace.Controls.Add(this.lblDate);
             this.grpRace.Controls.Add(this.lblOutcome);
-            this.grpRace.Location = new System.Drawing.Point(39, 59);
+            this.grpRace.Location = new System.Drawing.Point(44, 74);
+            this.grpRace.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpRace.Name = "grpRace";
-            this.grpRace.Size = new System.Drawing.Size(386, 197);
+            this.grpRace.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpRace.Size = new System.Drawing.Size(434, 246);
             this.grpRace.TabIndex = 17;
             this.grpRace.TabStop = false;
+            // 
+            // chkWon
+            // 
+            this.chkWon.AutoSize = true;
+            this.chkWon.Location = new System.Drawing.Point(141, 195);
+            this.chkWon.Name = "chkWon";
+            this.chkWon.Size = new System.Drawing.Size(68, 24);
+            this.chkWon.TabIndex = 11;
+            this.chkWon.Text = "Won";
+            this.chkWon.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(1188, 701);
+            this.btnClose.Location = new System.Drawing.Point(1336, 876);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(130, 47);
+            this.btnClose.Size = new System.Drawing.Size(146, 59);
             this.btnClose.TabIndex = 18;
             this.btnClose.Text = "Exit";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -223,37 +228,41 @@
             // dgvRaces
             // 
             this.dgvRaces.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRaces.Location = new System.Drawing.Point(20, 356);
+            this.dgvRaces.Location = new System.Drawing.Point(22, 445);
+            this.dgvRaces.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvRaces.Name = "dgvRaces";
             this.dgvRaces.RowTemplate.Height = 24;
-            this.dgvRaces.Size = new System.Drawing.Size(405, 322);
+            this.dgvRaces.Size = new System.Drawing.Size(456, 402);
             this.dgvRaces.TabIndex = 19;
             // 
             // dgvSortPopularity
             // 
             this.dgvSortPopularity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSortPopularity.Location = new System.Drawing.Point(462, 356);
+            this.dgvSortPopularity.Location = new System.Drawing.Point(520, 445);
+            this.dgvSortPopularity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvSortPopularity.Name = "dgvSortPopularity";
             this.dgvSortPopularity.RowTemplate.Height = 24;
-            this.dgvSortPopularity.Size = new System.Drawing.Size(405, 322);
+            this.dgvSortPopularity.Size = new System.Drawing.Size(456, 402);
             this.dgvSortPopularity.TabIndex = 20;
             // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(901, 356);
+            this.dataGridView3.Location = new System.Drawing.Point(1014, 445);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(405, 322);
+            this.dataGridView3.Size = new System.Drawing.Size(456, 402);
             this.dataGridView3.TabIndex = 21;
             // 
             // rbSort
             // 
             this.rbSort.AutoSize = true;
             this.rbSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbSort.Location = new System.Drawing.Point(12, 701);
+            this.rbSort.Location = new System.Drawing.Point(14, 876);
+            this.rbSort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbSort.Name = "rbSort";
-            this.rbSort.Size = new System.Drawing.Size(136, 24);
+            this.rbSort.Size = new System.Drawing.Size(168, 29);
             this.rbSort.TabIndex = 22;
             this.rbSort.TabStop = true;
             this.rbSort.Text = "Sort by Date";
@@ -264,9 +273,10 @@
             // 
             this.rbSortPopularity.AutoSize = true;
             this.rbSortPopularity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbSortPopularity.Location = new System.Drawing.Point(462, 701);
+            this.rbSortPopularity.Location = new System.Drawing.Point(520, 876);
+            this.rbSortPopularity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbSortPopularity.Name = "rbSortPopularity";
-            this.rbSortPopularity.Size = new System.Drawing.Size(180, 24);
+            this.rbSortPopularity.Size = new System.Drawing.Size(225, 29);
             this.rbSortPopularity.TabIndex = 23;
             this.rbSortPopularity.TabStop = true;
             this.rbSortPopularity.Text = "Sort by Popularity";
@@ -277,18 +287,26 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(488, 100);
+            this.pictureBox1.Location = new System.Drawing.Point(549, 125);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(333, 223);
+            this.pictureBox1.Size = new System.Drawing.Size(375, 279);
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
             // 
+            // dtpRaceDate
+            // 
+            this.dtpRaceDate.Location = new System.Drawing.Point(141, 142);
+            this.dtpRaceDate.Name = "dtpRaceDate";
+            this.dtpRaceDate.Size = new System.Drawing.Size(219, 26);
+            this.dtpRaceDate.TabIndex = 25;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1330, 783);
+            this.ClientSize = new System.Drawing.Size(1496, 979);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.rbSortPopularity);
             this.Controls.Add(this.rbSort);
@@ -303,6 +321,7 @@
             this.Controls.Add(this.btnWriteFile);
             this.Controls.Add(this.rtbFile);
             this.Controls.Add(this.btnLoadFile);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -324,8 +343,6 @@
         private System.Windows.Forms.Button btnWriteFile;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtLength;
-        private System.Windows.Forms.TextBox txtOutcome;
-        private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblLength;
         private System.Windows.Forms.Label lblDate;
@@ -341,6 +358,9 @@
         private System.Windows.Forms.RadioButton rbSort;
         private System.Windows.Forms.RadioButton rbSortPopularity;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox chkWon;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.DateTimePicker dtpRaceDate;
     }
 }
 
