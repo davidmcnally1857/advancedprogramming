@@ -190,6 +190,7 @@ namespace RacingBetSystem
                 if (rbSort.Checked)
                 {
                     dgvRaces.DataSource = raceList.OrderBy(race => race.Date).ToList();
+                   
                 }
             }
             catch(ArgumentNullException)
@@ -208,15 +209,19 @@ namespace RacingBetSystem
             try
             {
 
-                if (rbSort.Checked)
+                if (rbSortPopularity.Checked)
                 {
 
-                    dgvSortPopularity.DataSource = raceList.GroupBy(race => race.Name)
-                    .OrderByDescending(race => race.Count()).Take(1).ToList();
-
-
-
+                 dgvSortPopularity.DataSource = raceList.GroupBy(race => race.Name)
+                    .OrderByDescending(race => race.Count()).ToList();
+                    
+                   
+                   
                 }
+
+              
+
+               
 
             }
 
@@ -235,6 +240,31 @@ namespace RacingBetSystem
         public int getCount()
         {
             return 30;
+        }
+
+        private void rbsSortMoney_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbsSortMoney.Checked)
+            {
+               
+
+                dgvMoney.DataSource = raceList.GroupBy(race => new { race.Date.Year })
+                    .Select(x => new { Year = x.Key.Year, AmountWon = raceList.Where(race => race.Outcome == true)
+                    .Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length),
+                    AmountLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length)
+                    }).ToList();
+
+
+
+
+
+
+
+
+
+
+                //dgvMoney.DataSource = raceList.GroupBy(race => race.Date.Year).OrderByDescending(race => race.Count()).ToList();
+            }
         }
     }
 }
