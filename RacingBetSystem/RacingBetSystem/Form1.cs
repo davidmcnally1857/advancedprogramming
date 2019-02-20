@@ -9,7 +9,6 @@ namespace RacingBetSystem
 {
     public partial class Form1 : Form
     {
-        //RaceList raceList;
         public List<Races> raceList;
         private const string DIR_NAME = @"C:\Users\david";
         private const string SRCFile = "Race.txt";
@@ -21,26 +20,7 @@ namespace RacingBetSystem
         {
             PATH_NAME = $@"{DIR_NAME}\{SRCFile}";
             InitializeComponent();
-           // raceList = new List<Races>
-            //raceList = new RaceList();
-            {
-
-              /*  
-                new Races{Name = "Ascot", Date = new DateTime(2017, 05, 12), Length = 11.58m, Outcome = true  },
-                new Races{Name = "Punchestown", Date = new DateTime(2016, 12, 22), Length = 122.52m, Outcome = true  },
-                new Races{Name = "Sandown", Date = new DateTime(2016, 11, 17), Length = 20.00m, Outcome = false },
-                new Races{Name = "Ayr", Date = new DateTime(2016, 03, 11), Length = 25.00m, Outcome = false  },
-                new Races{Name = "FairyHouse", Date = new DateTime(2016, 02, 12), Length = 65.75m, Outcome = true  },
-                new Races{Name = "Doncaster", Date = new DateTime(2017, 12, 02), Length = 10.00m, Outcome = false  },
-                new Races{Name = "Towcester", Date = new DateTime(2016, 03, 12), Length = 50.00m, Outcome = false  }
-                */
-
-
-
-            };
-
-
-
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -59,11 +39,7 @@ namespace RacingBetSystem
             btnWriteFile.Enabled = false;
             try
             {
-                string name;
-                DateTime date;
-                decimal length;
-                bool outcome;
-                
+                              
                 using (FileStream fs = File.OpenRead(PATH_NAME))
                 {
                     using (StreamReader br = new StreamReader(fs))
@@ -104,8 +80,7 @@ namespace RacingBetSystem
 
         private void btnWriteFile_Click(object sender, EventArgs e)
         {
-
-           
+          
             try
             {
                 using (Stream fs = File.OpenWrite(PATH_NAME))
@@ -142,6 +117,8 @@ namespace RacingBetSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
+            raceList = new List<Races>();
             try
             {
                 
@@ -254,16 +231,6 @@ namespace RacingBetSystem
                     AmountLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length)
                     }).ToList();
 
-
-
-
-
-
-
-
-
-
-                //dgvMoney.DataSource = raceList.GroupBy(race => race.Date.Year).OrderByDescending(race => race.Count()).ToList();
             }
         }
     }
