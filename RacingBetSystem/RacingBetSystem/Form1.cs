@@ -18,6 +18,7 @@ namespace RacingBetSystem
 
         public Form1()
         {
+            raceList = new List<Races>();
             PATH_NAME = $@"{DIR_NAME}\{SRCFile}";
             InitializeComponent();
           
@@ -86,11 +87,8 @@ namespace RacingBetSystem
                         {
                             
                             br.Write(race.Name + ',');
-                            
                             br.Write(race.Date + ','.ToString());
-                            
                             br.Write(race.Length + ','.ToString());
-                            
                             br.Write(race.Outcome + Environment.NewLine);
                             
                         }
@@ -103,7 +101,7 @@ namespace RacingBetSystem
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -164,7 +162,7 @@ namespace RacingBetSystem
             }
             catch(ArgumentNullException)
             {
-                MessageBox.Show("Data needs to be added to sort by date");
+                MessageBox.Show(ShowMessage());
             }
 
             catch(Exception ex)
@@ -181,18 +179,18 @@ namespace RacingBetSystem
                 if (rbSortPopularity.Checked)
                 {
 
-                 dgvSortPopularity.DataSource = raceList.GroupBy(race => race.Name)
-                    .OrderByDescending(race => race.Count()).ToList();
+                    dgvSortPopularity.DataSource = raceList.GroupBy(race => race.Name)
+                        .OrderByDescending(race => race.Count()).Take(1).ToList();
+                          
                     
-                   
-                   
+                                                         
                 }
                                           
                }
 
             catch (ArgumentNullException)
             {
-                MessageBox.Show("Data needs to be added to sort by popularity");
+                MessageBox.Show(ShowMessage());
             }
 
             catch (Exception ex)
@@ -205,16 +203,28 @@ namespace RacingBetSystem
        
         private void rbsSortMoney_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbsSortMoney.Checked)
+            try
             {
-               
+                if (rbsSortMoney.Checked)
+                {
+                    dgvMoney.DataSource = raceList.GroupBy(race => new { race.Date.Year })
+                   .Select(x => new
+                   {
+                       Year = x.Key.Year,
+                       TotalWon = raceList.Where(race => race.Outcome == true)
+                   .Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length),
+                       TotalLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length)
+                   }).ToList();
 
-                dgvMoney.DataSource = raceList.GroupBy(race => new { race.Date.Year })
-                    .Select(x => new { Year = x.Key.Year, TotalWon = raceList.Where(race => race.Outcome == true)
-                    .Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length),
-                     TotalLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length)
-                    }).ToList();
-
+                }
+            }
+            catch(ArgumentNullException)
+            {
+                MessageBox.Show(ShowMessage());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -222,16 +232,14 @@ namespace RacingBetSystem
         {
             if(rbHighestAmountWonLost.Checked)
             {
-                /*
-                dgvAmountWonLost.DataSource = raceList.Select(x => new { MostWon = raceList
-                    .Where(race => race.Length == raceList.Max(y => y.Length))
-                    , MostLost = raceList
-                    .Where(race => race.Length == raceList.Min(y => y.Length))
-                    }).ToList();
-                     */
-                dgvAmountWonLost.DataSource = raceList
+                    dgvAmountWonLost.DataSource = raceList
                     .Select(x => new { MostWon = raceList.Where(race => race.Outcome == true).Max(y => y.Length), MostLost = raceList.Where(race => race.Outcome == false).Max(race => race.Length) }).Take(1).ToList();// == raceList.Max(x => x.Length)).ToList();
            }
+        }
+
+        public string ShowMessage()
+        {
+            return "Data needs to be added";
         }
     }
 }
