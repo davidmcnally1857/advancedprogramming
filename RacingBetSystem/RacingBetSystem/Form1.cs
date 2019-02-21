@@ -63,13 +63,7 @@ namespace RacingBetSystem
                         {
                             rtbFile.AppendText($"Venue: {race.Name}, Date: {race.Date} Length: {race.Length} Outcome: {race.Outcome} " + Environment.NewLine);
                         }
-                       
-
-
-
-
-
-                      }
+                                                                                                                                                                  }
                     }
                 }
             catch (Exception ex)
@@ -102,9 +96,7 @@ namespace RacingBetSystem
                         }
 
                         MessageBox.Show($"File written to {PATH_NAME}");
-                        
-
-
+                   
                     }
 
                 }
@@ -118,7 +110,7 @@ namespace RacingBetSystem
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
-            raceList = new List<Races>();
+        
             try
             {
                 
@@ -195,12 +187,8 @@ namespace RacingBetSystem
                    
                    
                 }
-
-              
-
-               
-
-            }
+                                          
+               }
 
             catch (ArgumentNullException)
             {
@@ -214,11 +202,7 @@ namespace RacingBetSystem
 
         }
 
-        public int getCount()
-        {
-            return 30;
-        }
-
+       
         private void rbsSortMoney_CheckedChanged(object sender, EventArgs e)
         {
             if (rbsSortMoney.Checked)
@@ -226,12 +210,28 @@ namespace RacingBetSystem
                
 
                 dgvMoney.DataSource = raceList.GroupBy(race => new { race.Date.Year })
-                    .Select(x => new { Year = x.Key.Year, AmountWon = raceList.Where(race => race.Outcome == true)
+                    .Select(x => new { Year = x.Key.Year, TotalWon = raceList.Where(race => race.Outcome == true)
                     .Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length),
-                    AmountLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length)
+                     TotalLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length)
                     }).ToList();
 
             }
+        }
+
+        private void rbHighestAmountWonLost_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbHighestAmountWonLost.Checked)
+            {
+                /*
+                dgvAmountWonLost.DataSource = raceList.Select(x => new { MostWon = raceList
+                    .Where(race => race.Length == raceList.Max(y => y.Length))
+                    , MostLost = raceList
+                    .Where(race => race.Length == raceList.Min(y => y.Length))
+                    }).ToList();
+                     */
+                dgvAmountWonLost.DataSource = raceList
+                    .Select(x => new { MostWon = raceList.Where(race => race.Outcome == true).Max(y => y.Length), MostLost = raceList.Where(race => race.Outcome == false).Max(race => race.Length) }).Take(1).ToList();// == raceList.Max(x => x.Length)).ToList();
+           }
         }
     }
 }

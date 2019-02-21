@@ -53,11 +53,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.rbsSortMoney = new System.Windows.Forms.RadioButton();
+            this.dgvAmountWonLost = new System.Windows.Forms.DataGridView();
+            this.rbHighestAmountWonLost = new System.Windows.Forms.RadioButton();
             this.grpRace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSortPopularity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMoney)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAmountWonLost)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -217,7 +220,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(1188, 701);
+            this.btnClose.Location = new System.Drawing.Point(1701, 701);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(130, 47);
             this.btnClose.TabIndex = 18;
@@ -301,12 +304,36 @@
             this.rbsSortMoney.UseVisualStyleBackColor = true;
             this.rbsSortMoney.CheckedChanged += new System.EventHandler(this.rbsSortMoney_CheckedChanged);
             // 
+            // dgvAmountWonLost
+            // 
+            this.dgvAmountWonLost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAmountWonLost.Location = new System.Drawing.Point(1337, 356);
+            this.dgvAmountWonLost.Name = "dgvAmountWonLost";
+            this.dgvAmountWonLost.RowTemplate.Height = 24;
+            this.dgvAmountWonLost.Size = new System.Drawing.Size(434, 322);
+            this.dgvAmountWonLost.TabIndex = 26;
+            // 
+            // rbHighestAmountWonLost
+            // 
+            this.rbHighestAmountWonLost.AutoSize = true;
+            this.rbHighestAmountWonLost.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbHighestAmountWonLost.Location = new System.Drawing.Point(1350, 701);
+            this.rbHighestAmountWonLost.Name = "rbHighestAmountWonLost";
+            this.rbHighestAmountWonLost.Size = new System.Drawing.Size(286, 24);
+            this.rbHighestAmountWonLost.TabIndex = 27;
+            this.rbHighestAmountWonLost.TabStop = true;
+            this.rbHighestAmountWonLost.Text = "Highest Amount Won and Lost";
+            this.rbHighestAmountWonLost.UseVisualStyleBackColor = true;
+            this.rbHighestAmountWonLost.CheckedChanged += new System.EventHandler(this.rbHighestAmountWonLost_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1330, 783);
+            this.ClientSize = new System.Drawing.Size(1843, 783);
+            this.Controls.Add(this.rbHighestAmountWonLost);
+            this.Controls.Add(this.dgvAmountWonLost);
             this.Controls.Add(this.rbsSortMoney);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.rbSortPopularity);
@@ -331,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSortPopularity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMoney)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAmountWonLost)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,6 +390,8 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DateTimePicker dtpRaceDate;
         private System.Windows.Forms.RadioButton rbsSortMoney;
+        private System.Windows.Forms.DataGridView dgvAmountWonLost;
+        private System.Windows.Forms.RadioButton rbHighestAmountWonLost;
     }
 }
 
