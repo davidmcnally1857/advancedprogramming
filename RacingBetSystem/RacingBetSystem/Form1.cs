@@ -9,8 +9,10 @@ namespace RacingBetSystem
 {
     public partial class Form1 : Form
     {
-        public List<Races> raceList;
-        private const string DIR_NAME = @"C:\Users\david";
+        public List<Races> raceList = new List<Races>();
+        public List<Races> writeList = new List<Races>();
+
+        private const string DIR_NAME = @"C:\Users\David.McNally";
         private const string SRCFile = "Race.txt";
         private string PATH_NAME;
         
@@ -18,7 +20,7 @@ namespace RacingBetSystem
 
         public Form1()
         {
-            raceList = new List<Races>();
+            
             PATH_NAME = $@"{DIR_NAME}\{SRCFile}";
             InitializeComponent();
           
@@ -31,7 +33,7 @@ namespace RacingBetSystem
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            raceList = new List<Races>();
+           
 
             if (rtbFile != null)
             {
@@ -57,12 +59,11 @@ namespace RacingBetSystem
                             race.Outcome = bool.Parse(entries[3]);
                             raceList.Add(race);
                            
-
                         }
 
                         foreach (var race in raceList)
                         {
-                            rtbFile.AppendText($"Venue: {race.Name}, Date: {race.Date} Length: {race.Length} Outcome: {race.Outcome} " + Environment.NewLine);
+                            rtbFile.AppendText($"Venue: {race.Name}, Date: {race.Date.ToShortDateString()} Length: {race.Length} Outcome: {race.Outcome} " + Environment.NewLine);
                         }
                                                                                                                                                                   }
                     }
@@ -78,26 +79,6 @@ namespace RacingBetSystem
           
             try
             {
-                using (Stream fs = File.OpenWrite(PATH_NAME))
-                {
-                    using (StreamWriter br = new StreamWriter(fs))
-                    {
-
-                        foreach (var race in raceList)
-                        {
-                            
-                            br.Write(race.Name + ',');
-                            br.Write(race.Date + ','.ToString());
-                            br.Write(race.Length + ','.ToString());
-                            br.Write(race.Outcome + Environment.NewLine);
-                            
-                        }
-
-                        MessageBox.Show($"File written to {PATH_NAME}");
-                   
-                    }
-
-                }
             }
             catch (Exception ex)
             {
@@ -111,13 +92,27 @@ namespace RacingBetSystem
         
             try
             {
+
+                 MessageBox.Show("Race Added");
+                   
                 
-                raceList.Add(new Races { Name = txtName.Text, Date = DateTime.Parse(dtpRaceDate.Text),  Length = int.Parse(txtLength.Text), Outcome = chkWon.Checked
-                });
-                MessageBox.Show("Race Added");
+                
+                
+                    using (StreamWriter br = new StreamWriter(PATH_NAME, append: true ))
+                    {
+
+                        br.WriteLine($"{txtName.Text},{DateTime.Parse(dtpRaceDate.Text)},{txtLength.Text},{chkWon.Checked}");
+                           
+    
+
+                                             
+                        MessageBox.Show($"File written to {PATH_NAME}");
+
+                    }
+
+                
                 grpRace.ResetText();
                 clearForm();
-                btnWriteFile.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -156,7 +151,7 @@ namespace RacingBetSystem
             {
                 if (rbSort.Checked)
                 {
-                    dgvRaces.DataSource = raceList.OrderBy(race => race.Date).ToList();
+                    dgvRaces.DataSource = raceList.OrderByDescending(race => race.Date).ToList();
                    
                 }
             }
@@ -230,16 +225,27 @@ namespace RacingBetSystem
 
         private void rbHighestAmountWonLost_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbHighestAmountWonLost.Checked)
+            try
             {
+                if (rbHighestAmountWonLost.Checked)
+                {
+
                     dgvAmountWonLost.DataSource = raceList
                     .Select(x => new { MostWon = raceList.Where(race => race.Outcome == true).Max(y => y.Length), MostLost = raceList.Where(race => race.Outcome == false).Max(race => race.Length) }).Take(1).ToList();// == raceList.Max(x => x.Length)).ToList();
-           }
-        }
+                }
 
-        public string ShowMessage()
-        {
-            return "Data needs to be added";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
-    }
+  
+        public string ShowMessage()
+            {
+                return "Data needs to be added";
+            }
+        }
+        
 }
