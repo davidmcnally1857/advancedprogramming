@@ -9,8 +9,8 @@ namespace RacingBetSystem
 {
     public partial class Form1 : Form
     {
-        public List<Races> raceList = new List<Races>();
-        public List<Races> writeList = new List<Races>();
+        public List<Races> raceList;
+        
 
         private const string DIR_NAME = @"C:\Users\David.McNally";
         private const string SRCFile = "Race.txt";
@@ -33,13 +33,14 @@ namespace RacingBetSystem
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-           
-
+            raceList = new List<Races>();
+            
             if (rtbFile != null)
             {
                 rtbFile.Clear();
             }
-            btnWriteFile.Enabled = false;
+            
+           
             try
             {
                               
@@ -60,6 +61,7 @@ namespace RacingBetSystem
                             raceList.Add(race);
                            
                         }
+                        br.Close();
 
                         foreach (var race in raceList)
                         {
@@ -107,12 +109,13 @@ namespace RacingBetSystem
 
                                              
                         MessageBox.Show($"File written to {PATH_NAME}");
-
+                    br.Close();
                     }
 
                 
                 grpRace.ResetText();
                 clearForm();
+                
             }
             catch (Exception ex)
             {
@@ -246,6 +249,25 @@ namespace RacingBetSystem
             {
                 return "Data needs to be added";
             }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+               // MessageBox.Show($"{raceList.Select}");
+                    
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
+
+    }
+    }
         
 }
