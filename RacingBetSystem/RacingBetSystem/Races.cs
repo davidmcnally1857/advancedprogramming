@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RacingBetSystem
 {
-    public class Races
+    public class Races : IComparable
     {
         public string Name { get; set; }
 
@@ -49,6 +49,17 @@ namespace RacingBetSystem
             }
         }
 
+        public int CompareTo(object obj)
+        {
+            int sort = -1;
+            Races race = obj as Races;
+            if(obj == null)
+            {
+                sort = this.Date.CompareTo(race.Date); 
+            }
 
+            return sort;
+
+        }
     }
 }

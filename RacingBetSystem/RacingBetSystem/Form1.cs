@@ -9,11 +9,11 @@ namespace RacingBetSystem
 {
     public partial class Form1 : Form
     {
-        //RaceList raceList;
-        List<Races> raceList;
+        RaceList raceList;
+        //List<Races> raceList;
         public List<Races> historicalData;
 
-        private const string DIR_NAME = @"C:\Users\david";
+        private const string DIR_NAME = @"C:\Users\David.McNally";
         private const string SRCFile = "Race.txt";
         private string PATH_NAME;
 
@@ -34,8 +34,8 @@ namespace RacingBetSystem
 
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            //raceList = new RaceList();
-            raceList = new List<Races>();
+            raceList = new RaceList();
+            //raceList = new List<Races>();
             if (rtbFile != null)
             {
 

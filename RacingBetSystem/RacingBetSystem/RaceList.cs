@@ -56,22 +56,22 @@ namespace RacingBetSystem
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            RacesList.Clear();
         }
 
         public bool Contains(Races item)
         {
-            throw new NotImplementedException();
+            return RacesList.Contains(item);
         }
 
         public void CopyTo(Races[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+           RacesList.CopyTo(array, arrayIndex);
         }
 
         bool ICollection<Races>.Remove(Races item)
         {
-            throw new NotImplementedException();
+           return RacesList.Remove(item);
         }
 
         public IEnumerator<Races> GetEnumerator()
@@ -83,5 +83,13 @@ namespace RacingBetSystem
         {
             throw new NotImplementedException();
         }
+        
+        public void Sort()
+        {
+            RacesList.Sort();
+            
+        }
+
+        
     }
 }
