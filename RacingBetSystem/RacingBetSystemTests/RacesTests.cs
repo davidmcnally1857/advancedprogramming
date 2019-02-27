@@ -37,6 +37,7 @@ namespace RacingBetSystem.Tests
             Races race = new Races("Punchestown", new DateTime(2017, 02, 1), 14.00m, true);
         }
 
+
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldnotAcceptZeroOrLess()
