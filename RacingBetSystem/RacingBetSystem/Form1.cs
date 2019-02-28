@@ -11,12 +11,10 @@ namespace RacingBetSystem
     {
         RaceList raceList;
         RaceList historicalData;
-
-        //private const string DIR_NAME = @"C:\Users\David.McNally";
-   
+        
+           
         private string PATH_NAME;
-
-
+        
 
         public Form1()
         {
@@ -24,6 +22,7 @@ namespace RacingBetSystem
             PATH_NAME = "Races.bin";
             InitializeComponent();
 
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,6 +31,12 @@ namespace RacingBetSystem
             /* Loads data from file 
              * will show nothing if no data is in file
              */
+           if(!File.Exists(PATH_NAME))
+            {
+                FileStream fs = File.Create(PATH_NAME);
+                fs.Close();
+            }
+            
             LoadFileData();
         
         }
@@ -47,19 +52,20 @@ namespace RacingBetSystem
             }
 
 
+
             try
             {
 
                 using (FileStream fs = File.OpenRead(PATH_NAME))
                 {
-                    using (StreamReader br = new StreamReader(fs))
+                    using (StreamReader br = new StreamReader(fs, true))
                     {
-                        
+
                         List<String> lines = File.ReadAllLines(PATH_NAME).ToList();
 
                         foreach (var line in lines)
                         {
-                           
+
                             Races race = new Races();
                             string[] entries = line.Split(',');
                             race.Name = entries[0];
@@ -102,6 +108,7 @@ namespace RacingBetSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+           
             try
             {
                                 
@@ -144,11 +151,7 @@ namespace RacingBetSystem
             clearForm();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-
-        }
+      
 
         private void rbSort_CheckedChanged(object sender, EventArgs e)
         {
@@ -280,7 +283,7 @@ namespace RacingBetSystem
         }
 
 
-        public RaceList LoadHistoricalData()
+        public RaceList LoadHistoricalData() // Load 36 default races
         {
             try
             {
@@ -339,9 +342,19 @@ namespace RacingBetSystem
         }
        
 
-        private void menuloadRaceDataToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void mnuLoadRaceDataToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
 
+          
+          }
+
+        private void mnuExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void mnuLoadRaceDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             string message = "Uploading Historical Data will overwrite existing file Proceed?";
             string caption = "Warning";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -374,10 +387,13 @@ namespace RacingBetSystem
             {
                 MessageBox.Show("Cancelled");
             }
-          }
-            
+
         }
     }
+
+        }
+    
+    
     
         
 

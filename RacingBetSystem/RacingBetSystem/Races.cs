@@ -31,6 +31,10 @@ namespace RacingBetSystem
             {
                 throw new ArgumentNullException();
             }
+            if(name == "")
+            {
+                throw new ArgumentException();
+            }
 
             if(length <= 0)
             {
