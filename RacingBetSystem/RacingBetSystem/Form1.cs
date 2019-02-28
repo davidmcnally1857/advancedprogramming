@@ -13,8 +13,8 @@ namespace RacingBetSystem
         //List<Races> raceList;
         public List<Races> historicalData;
 
-        private const string DIR_NAME = @"C:\Users\David.McNally";
-        private const string SRCFile = "Race.txt";
+        //private const string DIR_NAME = @"C:\Users\David.McNally";
+   
         private string PATH_NAME;
 
 
@@ -22,7 +22,7 @@ namespace RacingBetSystem
         public Form1()
         {
 
-            PATH_NAME = $@"{DIR_NAME}\{SRCFile}";
+            PATH_NAME = "Races.bin";
             InitializeComponent();
 
         }
@@ -60,7 +60,7 @@ namespace RacingBetSystem
                             string[] entries = line.Split(',');
                             race.Name = entries[0];
                             race.Date = DateTime.Parse(entries[1]);
-                            race.Length = decimal.Parse(entries[2]);
+                            race.Amount = decimal.Parse(entries[2]);
                             race.Outcome = bool.Parse(entries[3]);
                             raceList.Add(race);
 
@@ -69,7 +69,7 @@ namespace RacingBetSystem
 
                         foreach (var race in raceList)
                         {
-                            rtbFile.AppendText($"Venue: {race.Name}, Date: {race.Date.ToShortDateString()} Length: {race.Length} Outcome: {race.Outcome} " + Environment.NewLine);
+                            rtbFile.AppendText($"Venue: {race.Name}, Date: {race.Date.ToShortDateString()} Length: {race.Amount} Outcome: {race.Outcome} " + Environment.NewLine);
                         }
                     }
                 }
@@ -106,7 +106,7 @@ namespace RacingBetSystem
                     Races race = new Races(txtName.Text, DateTime.Parse(dtpRaceDate.Text),int.Parse(txtLength.Text), chkWon.Checked );
 
                     // br.WriteLine($"{txtName.Text},{DateTime.Parse(dtpRaceDate.Text).ToShortDateString()},{txtLength.Text},{chkWon.Checked}");
-                    br.WriteLine($"{race.Name}, {race.Date.ToShortDateString()}, {race.Length}, {race.Outcome}");
+                    br.WriteLine($"{race.Name}, {race.Date.ToShortDateString()}, {race.Amount}, {race.Outcome}");
                 }
                 MessageBox.Show("Race Added");
 
@@ -205,8 +205,8 @@ namespace RacingBetSystem
                    {
                        x.Key.Year,
                        TotalWon = raceList.Where(race => race.Outcome == true)
-                   .Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length),
-                       TotalLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Length)
+                   .Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Amount),
+                       TotalLost = raceList.Where(race => race.Outcome == false).Where(race => race.Date.Year == x.Key.Year).Sum(race => race.Amount)
                    }).ToList(); 
                     
                     // Total amount won and lost per year 
@@ -231,7 +231,7 @@ namespace RacingBetSystem
                 {
 
                     dgvRaces.DataSource = raceList
-                    .Select(x => new { MostWon = raceList.Where(race => race.Outcome == true).Max(y => y.Length), MostLost = raceList.Where(race => race.Outcome == false).Max(race => race.Length) }).Take(1).ToList();// == raceList.Max(x => x.Length)).ToList();
+                    .Select(x => new { MostWon = raceList.Where(race => race.Outcome == true).Max(y => y.Amount), MostLost = raceList.Where(race => race.Outcome == false).Max(race => race.Amount) }).Take(1).ToList();// == raceList.Max(x => x.Length)).ToList();
                 }
 
             }
@@ -272,41 +272,50 @@ namespace RacingBetSystem
         {
             try
             {
-                
-                    historicalData = new List<Races>()
+
+                historicalData = new List<Races>()
             {
-                new Races{ Name = "Aintree", Date = new DateTime(2017, 05, 12), Length = 11.58m, Outcome = true },
-                new Races{ Name = "Punchestown", Date = new DateTime(2016, 12, 22), Length = 122.52m, Outcome = true },
-                new Races{ Name = "Ayr", Date = new DateTime(2016, 11, 03), Length = 25.00m, Outcome = false },
-                new Races{ Name = "Fairyhouse", Date = new DateTime(2016, 12, 02), Length = 65.75m, Outcome = true },
-                new Races{ Name = "Ayr", Date = new DateTime(2017, 03, 11), Length = 12.05m, Outcome = true },
-                new Races{ Name = "Doncaster", Date = new DateTime(2017, 12, 02), Length = 10.00m, Outcome = false },
-                new Races{ Name = "Towcester", Date = new DateTime(2016, 03, 12), Length = 50.00m, Outcome = false },
-                new Races{ Name = "Goodwood", Date = new DateTime(2017, 10, 07), Length = 525.74m, Outcome = true },
-                new Races{ Name = "Kelso", Date = new DateTime(2016, 09, 13), Length = 43.21m, Outcome = true },
-                new Races{ Name = "Punchestown", Date = new DateTime(2017, 07, 05), Length = 11.58m, Outcome = true },
-                new Races{ Name = "Ascot", Date = new DateTime(2016, 02, 04), Length = 23.65m, Outcome = true },
-                new Races{ Name = "Bangor", Date = new DateTime(2016, 12, 22), Length = 30.00m, Outcome = false },
-                new Races{ Name = "Ayr", Date = new DateTime(2017, 05, 22), Length = 11.50m, Outcome = true },
-                new Races{ Name = "Ascot", Date = new DateTime(2017, 06, 23), Length = 30.00m, Outcome = false },
-                new Races{ Name = "Ascot", Date = new DateTime(2017, 06, 23), Length = 374.27m, Outcome = true },
-                new Races{ Name = "Goodwood", Date = new DateTime(2016, 10, 05), Length = 34.12m, Outcome = true },
-                new Races{ Name = "Dundalk", Date = new DateTime(2016, 11, 09), Length = 20.00m, Outcome = false },
-                new Races{ Name = "Haydock", Date = new DateTime(2016, 11, 12), Length = 87.00m, Outcome = true },
-                new Races{ Name = "Perth", Date = new DateTime(2017, 01, 20), Length = 15.00m, Outcome = false },
-                new Races{ Name = "York", Date = new DateTime(2017, 11, 11), Length = 101.25m, Outcome = true },
-                new Races{ Name = "Punchestown", Date = new DateTime(2016, 12, 22), Length = 11.50m, Outcome = true },
-                new Races{ Name = "Chester", Date = new DateTime(2016, 08, 14), Length = 10.00m, Outcome = false },
-                new Races{ Name = "Kelso", Date = new DateTime(2016, 09, 18), Length = 10.00m, Outcome = false },
-                new Races{ Name = "Kilbeggan", Date = new DateTime(2017, 03, 03), Length = 20.00m, Outcome = false },
-                new Races{ Name = "Fairyhouse", Date = new DateTime(2017, 03, 11), Length = 55.50m, Outcome = true },
-                new Races{ Name = "Punchestown", Date = new DateTime(2016, 11, 15), Length = 16.55m, Outcome = true },
-                new Races{ Name = "Cork", Date = new DateTime(2016, 11, 30), Length = 20.00m, Outcome = false },
-                new Races{ Name = "Punchestown", Date = new DateTime(2016, 04, 25), Length = 13.45m, Outcome = true },
-                new Races{ Name = "Bangor", Date = new DateTime(2016, 01, 23), Length = 10.00m, Outcome = false }
-              };
-           
-               
+              
+                 new Races { Name = "Aintree", Date = new DateTime(2017, 05, 12), Amount = 11.58m, Outcome = true },
+                 new Races { Name = "Punchestown", Date = new DateTime(2016, 12, 22),Amount = 122.52m, Outcome = true },
+                 new Races { Name =  "Sandown", Date = new DateTime (2016, 11, 17), Amount = 20.00m, Outcome = false },
+                 new Races { Name = "Ayr", Date = new DateTime(2016, 11, 03), Amount = 25.00m, Outcome = false },
+                 new Races { Name = "Fairyhouse", Date = new DateTime (2016, 12, 02), Amount = 65.75m, Outcome =  true },
+                 new Races { Name = "Ayr", Date =  new DateTime(2017,03, 11), Amount = 12.05m, Outcome = true },
+                 new Races { Name = "Doncaster", Date = new DateTime(2017, 12, 02), Amount = 10.00m, Outcome = false },
+                 new Races { Name = "Towcester", Date = new DateTime(2016, 03, 12), Amount =  50.00m, Outcome = false },
+                 new Races { Name = "Goodwood" , Date = new DateTime(2017, 10, 07), Amount =  525.74m, Outcome =  true },
+                 new Races { Name = "Kelso", Date = new DateTime(2016, 09, 13), Amount = 43.21m, Outcome = true },
+                 new Races { Name = "Punchestown", Date = new DateTime(2017, 07, 05), Amount = 35.00m, Outcome = false },
+                 new Races { Name = "Ascot", Date = new DateTime(2016, 02, 04), Amount = 23.65m, Outcome = true },
+                 new Races { Name = "Kelso",  Date = new DateTime(2017, 08, 02), Amount = 30.00m, Outcome = false },
+                 new Races { Name = "Towcester", Date = new DateTime(2017, 05, 01),Amount = 104.33m, Outcome = true },
+                 new Races { Name =  "Ascot",  Date=  new DateTime(2017, 06, 21), Amount = 25.00m, Outcome =  false },
+                 new Races { Name = "Bangor", Date = new DateTime(2016, 12, 22), Amount = 30.00m, Outcome =  false },
+                 new Races { Name = "Ayr", Date = new DateTime(2017, 05, 22), Amount = 11.50m, Outcome = true },
+                 new Races { Name = "Ascot", Date = new DateTime(2017, 06, 23), Amount = 30.00m, Outcome = false },
+                 new Races { Name = "Ascot", Date = new  DateTime(2017, 06, 23), Amount = 374.27m, Outcome = true },
+                 new Races { Name = "Goodwood", Date = new DateTime(2016, 10, 05), Amount = 34.12m, Outcome = true },
+                 new Races { Name = "Dundalk", Date = new DateTime(2016, 11, 09), Amount = 20.00m, Outcome = false },
+                 new Races { Name = "Haydock", Date = new DateTime(2016, 11, 12), Amount = 87.00m, Outcome = true },
+                 new Races { Name = "Perth", Date = new DateTime(2017, 01, 20), Amount = 15.00m, Outcome = false },
+                 new Races { Name = "York", Date = new DateTime(2017, 11, 11), Amount = 101.25m, Outcome = true },
+                 new Races { Name = "Punchestown", Date = new DateTime(2016, 12, 22), Amount = 11.50m, Outcome = true },
+                 new Races { Name = "Chester", Date = new DateTime(2016, 08, 14), Amount =  10.00m, Outcome =  false },
+                 new Races { Name = "Kelso", Date = new DateTime(2016, 09, 18),  Amount = 10.00m, Outcome =  false },
+                 new Races { Name = "Kilbeggan",  Date = new DateTime(2017, 03, 03), Amount = 20.00m, Outcome = false },
+                 new Races { Name = "Fairyhouse", Date = new DateTime(2017, 03, 11), Amount = 55.50m, Outcome = true },
+                 new Races { Name = "Punchestown", Date = new DateTime(2016, 11, 15), Amount =  10.00m, Outcome = false },
+                 new Races { Name = "Towcester", Date = new DateTime(2016, 05, 08), Amount = 16.55m, Outcome = true },
+                 new Races { Name = "Punchestown", Date = new DateTime(2016, 05, 23), Amount = 13.71m, Outcome = true },
+                 new Races { Name = "Cork", Date = new DateTime(2016, 11, 30), Amount = 20.00m, Outcome = false },
+                 new Races { Name = "Punchestown", Date = new DateTime(2016, 04, 25), Amount = 13.45m, Outcome = true },
+                 new Races { Name = "Bangor", Date = new DateTime(2016, 01, 23), Amount = 10.00m, Outcome = false },
+                 new Races { Name = "Sandown", Date = new DateTime(2017, 08, 07), Amount = 25.00m, Outcome = false }
+                };
+
+
+
             }
             catch (Exception ex)
             {
@@ -340,7 +349,7 @@ namespace RacingBetSystem
 
                     foreach (var race in historicalData)
                     {
-                        br.WriteLine($"{race.Name},{race.Date.ToShortDateString()},{race.Length},{race.Outcome}");
+                        br.WriteLine($"{race.Name},{race.Date.ToShortDateString()},{race.Amount},{race.Outcome}");
 
                     }
 

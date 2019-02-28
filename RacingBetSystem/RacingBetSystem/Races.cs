@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace RacingBetSystem
 {
-    public class Races : IComparable
+    public class Races 
     {
         public string Name { get; set; }
 
         public DateTime Date { get; set; }
 
-        public decimal Length { get; set; }
+        public decimal Amount { get; set; }
 
         public bool Outcome { get; set; }
 
@@ -40,26 +40,13 @@ namespace RacingBetSystem
 
             else
             {
-
-
+                
                 Name = name;
                 Date = date;
-                Length = length;
+                Amount = length;
                 Outcome = outcome;
             }
         }
 
-        public int CompareTo(object obj)
-        {
-            int sort = -1;
-            Races race = obj as Races;
-            if(obj == null)
-            {
-                sort = this.Date.CompareTo(race.Date); 
-            }
-
-            return sort;
-
-        }
-    }
+      }
 }

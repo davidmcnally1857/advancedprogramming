@@ -16,7 +16,7 @@ namespace RacingBetSystem.Tests
         {
             RaceList races = new RaceList()
             {
-                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Length = 1400m, Outcome = true }
+                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Amount = 1400m, Outcome = true }
             };
         }
 
@@ -27,14 +27,13 @@ namespace RacingBetSystem.Tests
 
             RaceList races = new RaceList()
             {
-                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Length = 1400m, Outcome = true },
-                new Races{Name = "Towcester", Date = new DateTime(2017, 1, 10), Length = 2300m, Outcome = false },
-                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Length = 1400m, Outcome = true }
+                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Amount = 1400m, Outcome = true },
+                new Races{Name = "Towcester", Date = new DateTime(2017, 1, 10), Amount = 2300m, Outcome = false },
+                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Amount = 1400m, Outcome = true }
             };
 
             Assert.AreEqual(races.Count, count);
-
-            
+                        
         }
 
 
