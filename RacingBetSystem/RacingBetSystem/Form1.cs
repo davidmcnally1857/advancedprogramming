@@ -10,8 +10,7 @@ namespace RacingBetSystem
     public partial class Form1 : Form
     {
         RaceList raceList;
-        //List<Races> raceList;
-        public List<Races> historicalData;
+        RaceList historicalData;
 
         //private const string DIR_NAME = @"C:\Users\David.McNally";
    
@@ -29,13 +28,18 @@ namespace RacingBetSystem
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
+            /* Loads data from file 
+             * will show nothing if no data is in file
+             */
+            LoadFileData();
+        
         }
 
-        private void btnLoadFile_Click(object sender, EventArgs e)
-        {
+        public void LoadFileData()
+        { 
             raceList = new RaceList();
-            //raceList = new List<Races>();
+          
             if (rtbFile != null)
             {
 
@@ -103,15 +107,16 @@ namespace RacingBetSystem
                                 
                 using (StreamWriter br = new StreamWriter(PATH_NAME, append: true))
                 {
+                    // Passing values from fields on form to object in Races class so buiness rules can be applied
                     Races race = new Races(txtName.Text, DateTime.Parse(dtpRaceDate.Text),int.Parse(txtLength.Text), chkWon.Checked );
-
-                    // br.WriteLine($"{txtName.Text},{DateTime.Parse(dtpRaceDate.Text).ToShortDateString()},{txtLength.Text},{chkWon.Checked}");
+                                      
                     br.WriteLine($"{race.Name}, {race.Date.ToShortDateString()}, {race.Amount}, {race.Outcome}");
                 }
                 MessageBox.Show("Race Added");
 
                 grpRace.ResetText();
                 clearForm();
+                LoadFileData();
 
             }
             catch (Exception ex)
@@ -268,12 +273,12 @@ namespace RacingBetSystem
         }
 
 
-        public List<Races> LoadHistoricalData()
+        public RaceList LoadHistoricalData()
         {
             try
             {
 
-                historicalData = new List<Races>()
+                historicalData = new RaceList()
             {
               
                  new Races { Name = "Aintree", Date = new DateTime(2017, 05, 12), Amount = 11.58m, Outcome = true },
@@ -354,7 +359,9 @@ namespace RacingBetSystem
                     }
 
                 }
-              }
+
+                LoadFileData();
+            }
 
             else
             {

@@ -21,7 +21,17 @@ namespace RacingBetSystem.Tests
         }
 
         [TestMethod()]
-        public void ListCountSHouldGiveCorrectValue()
+        public void RacesShouldBeAddedUsingAdd()
+        {
+            RaceList races = new RaceList();
+
+
+               races.Add(new Races { Name = "Cheltenham", Date = new DateTime(2018, 5, 20), Amount = 450m, Outcome = false });
+            
+        }
+
+        [TestMethod()]
+        public void ListCountShouldGiveCorrectValue()
         {
             int count = 3;
 

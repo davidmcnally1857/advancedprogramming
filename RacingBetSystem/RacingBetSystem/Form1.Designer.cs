@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btnLoadFile = new System.Windows.Forms.Button();
             this.rtbFile = new System.Windows.Forms.RichTextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
@@ -60,18 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnLoadFile
-            // 
-            this.btnLoadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadFile.Location = new System.Drawing.Point(998, 370);
-            this.btnLoadFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(146, 59);
-            this.btnLoadFile.TabIndex = 0;
-            this.btnLoadFile.Text = "Load File";
-            this.btnLoadFile.UseVisualStyleBackColor = true;
-            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
             // rtbFile
             // 
@@ -371,7 +358,6 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.rtbFile);
-            this.Controls.Add(this.btnLoadFile);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
@@ -389,8 +375,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnLoadFile;
         private System.Windows.Forms.RichTextBox rtbFile;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtLength;
