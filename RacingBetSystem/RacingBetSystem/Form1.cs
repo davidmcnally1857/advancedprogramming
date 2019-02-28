@@ -205,6 +205,7 @@ namespace RacingBetSystem
             {
                 if (rbsSortMoney.Checked)
                 {
+                    
                     dgvRaces.DataSource = raceList.OrderByDescending(race => race.Date.Year).GroupBy(race => new { race.Date.Year })
                    .Select(x => new
                    {
@@ -234,9 +235,15 @@ namespace RacingBetSystem
             {
                 if (rbHighestAmountWonLost.Checked)
                 {
+                    dgvRaces.DataSource = null;
+
 
                     dgvRaces.DataSource = raceList
                     .Select(x => new { MostWon = raceList.Where(race => race.Outcome == true).Max(y => y.Amount), MostLost = raceList.Where(race => race.Outcome == false).Max(race => race.Amount) }).Take(1).ToList();// == raceList.Max(x => x.Length)).ToList();
+                }
+                if(dgvRaces.DataSource == null)
+                {
+                    MessageBox.Show("Need both won and lost value");
                 }
 
             }

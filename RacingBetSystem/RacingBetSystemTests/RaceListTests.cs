@@ -46,6 +46,23 @@ namespace RacingBetSystem.Tests
                         
         }
 
+        [TestMethod()]
+        public void ListShouldHaveACOuntOfZeroAfterClear()
+        {
+            int count = 0;
+
+            RaceList races = new RaceList()
+            {
+                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Amount = 1400m, Outcome = true },
+                new Races{Name = "Towcester", Date = new DateTime(2017, 1, 10), Amount = 2300m, Outcome = false },
+                new Races{Name = "Ascot", Date = new DateTime(2017, 2, 12), Amount = 1400m, Outcome = true }
+            };
+
+            races.Clear();
+
+            Assert.AreEqual(races.Count, count);
+        }
+
 
     }
 }
